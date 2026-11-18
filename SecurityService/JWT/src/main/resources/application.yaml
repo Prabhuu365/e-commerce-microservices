@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: security-service
+
+  datasource:
+    url: jdbc:oracle:thin:@localhost:1521:xe
+    username: system
+    password: sarasu10
+    driver-class-name: oracle.jdbc.OracleDriver
+
+  jpa:
+    hibername:
+      ddl-auto: update
+    show-sql: true
