@@ -14,6 +14,9 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
+    @GetMapping("/")
+    public String welcome(){return "Welcome to product service";}
+
     @PostMapping
     public Product createProduct(@RequestBody Product product) {
         return productService.addProduct(product);
@@ -28,4 +31,6 @@ public class ProductController {
     public Product getBySku(@PathVariable String sku) {
         return productService.getBySku(sku);
     }
+
+
 }

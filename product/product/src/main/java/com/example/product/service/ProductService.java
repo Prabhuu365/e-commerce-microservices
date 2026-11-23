@@ -25,4 +25,5 @@ public class ProductService {
         return productRepo.findBySku(sku)
                 .orElseThrow(() -> new RuntimeException("Product not found: " + sku));
     }
+
 }

@@ -34,6 +34,8 @@ public class OrderService {
         order.setStatus("PENDING");
         Order savedOrder = orderRepo.save(order);
 
+        System.out.println(savedOrder);
+
         // 2. Deduct stock from inventory-service
         inventoryClient.deductStock(order.getSku(), order.getQty());
 
@@ -41,7 +43,7 @@ public class OrderService {
         PaymentDto payReq = new PaymentDto();
         payReq.setOrderId(savedOrder.getId());
         payReq.setAmount(savedOrder.getTotalAmount());
-        payReq.setCardMode(order.getCardMode());
+        payReq.setCardMode(savedOrder.getCardMode());
 
         PaymentDto payRes = paymentClient.charge(payReq);
 

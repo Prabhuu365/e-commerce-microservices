@@ -1,6 +1,7 @@
 package com.example.payment.controller;
 
 
+import com.example.payment.dto.PaymentDto;
 import com.example.payment.entity.Payment;
 import com.example.payment.service.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,7 @@ public class PaymentController {
     private PaymentService paymentService;
 
     @PostMapping("/charge")
-    public Payment processPayment(@RequestBody Payment payment) {
+    public Payment processPayment(@RequestBody PaymentDto payment) {
         return paymentService.charge(payment);
     }
 
