@@ -5,6 +5,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import jakarta.websocket.Decoder;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.security.Key;
@@ -15,6 +16,7 @@ import java.util.Map;
 
 @Component
 public class JwtService {
+    @Value("${jwt.secret}")
     private  final String secret = "guywefyg728937892yhuhef9283hf792gy32892yf8h9f2fh";
 
     public String createToken(Map<String,Object> claim, String username) {

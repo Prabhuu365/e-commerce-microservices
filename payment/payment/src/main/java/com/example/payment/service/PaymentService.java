@@ -22,7 +22,7 @@ public class PaymentService {
         Payment payment1 = new Payment();
 
         payment1.setOrderId(payment.getOrderId());
-        payment1.setStatus(payment1.getStatus());
+        payment1.setStatus(payment.getStatus());
         payment1.setAmount(payment.getAmount());
         payment1.setCardMode(payment.getCardMode());
 

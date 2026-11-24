@@ -34,7 +34,7 @@ public class OrderService {
         order.setStatus("PENDING");
         Order savedOrder = orderRepo.save(order);
 
-        System.out.println(savedOrder);
+        //System.out.println(savedOrder);
 
         // 2. Deduct stock from inventory-service
         inventoryClient.deductStock(order.getSku(), order.getQty());

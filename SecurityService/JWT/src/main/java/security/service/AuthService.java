@@ -25,11 +25,15 @@ public class AuthService {
     private PasswordEncoder passwordEncoder;
     @Autowired
     private UserRepository userRepository;
+
+   private String token;
+
+
     public String  registeruser(UserRegisterDTO userRegisterDTO) throws UsernameAlreadyExist {
        Optional<UserCredentials> user  = userRepository.findByUsername(userRegisterDTO.getUsername());
-       if(user.isPresent()){
-           throw new UsernameAlreadyExist("Username Already Exixst WIth Username"+userRegisterDTO.getUsername());
-       }
+        if(user.isPresent()){
+            throw new UsernameAlreadyExist("Username Already Exixst WIth Username"+userRegisterDTO.getUsername());
+        }
        UserCredentials userCredentials = new UserCredentials();
        userCredentials.setUsername(userRegisterDTO.getUsername());
        userCredentials.setPassword(passwordEncoder.encode(userRegisterDTO.getPassword()));
@@ -43,9 +47,9 @@ public class AuthService {
 
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userRegisterDTO.getUsername(),userRegisterDTO.getPassword()));
         if(authentication.isAuthenticated()){
-            String token = jwtService.gettoken(userRegisterDTO.getUsername());
+             token = jwtService.gettoken(userRegisterDTO.getUsername());
         }
+        return token;
 
-       return null;
     }
 }

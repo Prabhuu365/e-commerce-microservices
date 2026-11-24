@@ -40,9 +40,10 @@ public class SecurtyConfiguration {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http){
-        http.authorizeHttpRequests(auth->
-                auth.requestMatchers("/register").permitAll()
-                        .requestMatchers("/token").permitAll()
+        http.csrf(csrf->csrf.disable()).authorizeHttpRequests(auth->
+                auth.requestMatchers("/authenticate/register").permitAll()
+                        .requestMatchers("/authenticate/token").permitAll().
+                        requestMatchers("/authenticate/").permitAll()
                         .anyRequest().authenticated());
         return http.build();
     }

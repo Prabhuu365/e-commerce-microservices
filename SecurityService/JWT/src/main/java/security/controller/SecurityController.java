@@ -2,10 +2,7 @@ package security.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import security.dto.UserRegisterDTO;
 import security.exception.UsernameAlreadyExist;
 import security.service.AuthService;
@@ -15,6 +12,12 @@ import security.service.AuthService;
 public class SecurityController {
     @Autowired
     private  AuthService authService;
+
+    @GetMapping("/")
+    public String hello(){
+        return "hello security service here";
+    }
+
 
     @PostMapping("/register")
     public String registeruser(@RequestBody UserRegisterDTO userRegisterDTO) throws UsernameAlreadyExist {
