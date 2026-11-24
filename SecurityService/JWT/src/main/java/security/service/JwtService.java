@@ -17,7 +17,7 @@ import java.util.Map;
 @Component
 public class JwtService {
     @Value("${jwt.secret}")
-    private  final String secret = "guywefyg728937892yhuhef9283hf792gy32892yf8h9f2fh";
+    private String secret;
 
     public String createToken(Map<String,Object> claim, String username) {
         String token = Jwts.builder().
