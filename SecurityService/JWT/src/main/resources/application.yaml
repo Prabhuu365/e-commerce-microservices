@@ -12,3 +12,13 @@ spring:
     hibername:
       ddl-auto: update
     show-sql: true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8082/eureka
+    fetch-registry: true
+    register-with-eureka: true
+
+server:
+  port: 8087
