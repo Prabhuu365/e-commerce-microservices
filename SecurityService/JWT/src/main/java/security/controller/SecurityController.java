@@ -26,6 +26,10 @@ public class SecurityController {
 
     @PostMapping("/token")
     public String getToken(@RequestBody UserRegisterDTO userRegisterDTO) throws UsernameNotFoundException {
-       return authService.geToken(userRegisterDTO);
+       return authService.geT
+
+
+
+        oken(userRegisterDTO);
     }
 }

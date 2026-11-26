@@ -2,14 +2,20 @@ package com.example.order.service;
 
 
 import com.example.order.client.InventoryClient;
+import com.example.order.client.OrderWebClient;
 import com.example.order.client.PaymentClient;
 import com.example.order.client.ProductClient;
+import com.example.order.dto.InventoryResponseDto;
 import com.example.order.dto.PaymentDto;
 import com.example.order.dto.ProductDto;
 import com.example.order.entity.Order;
 import com.example.order.repository.OrderRepository;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.client.WebClient;
+
 import java.util.List;
 
 @Service
@@ -25,7 +31,14 @@ public class OrderService {
     private InventoryClient inventoryClient;
 
     @Autowired
-    private PaymentClient paymentClient;
+    PaymentClient paymentClient;
+
+    @Autowired
+    private OrderWebClient webClient;
+
+    private Logger log;
+
+    public OrderService(@Qualifier("OrderLog") Logger log)
 
     public Order placeOrder(Order order) {
         // 1. Get real price from product-service
@@ -37,7 +50,12 @@ public class OrderService {
         //System.out.println(savedOrder);
 
         // 2. Deduct stock from inventory-service
-        inventoryClient.deductStock(order.getSku(), order.getQty());
+
+        // Using webclient
+
+        webClient.deductinventory(order.getSku(),order.getQty());
+
+        // inventoryClient.deductStock(order.getSku(), order.getQty());
 
         // 3. Call payment-service
         PaymentDto payReq = new PaymentDto();
